@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Excel files (测试数据)
+*.xls
+*.xlsx
+!example.xlsx
+
+# Output
+employee_hours-*.xlsx
+attendance_stats-*.xlsx
