@@ -42,22 +42,27 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           pyinstaller --onefile --windowed --name AttendanceReportTool --icon app_icon.ico gui_app.py
+          cd dist && 7z a ../AttendanceReportTool-Windows.zip AttendanceReportTool.exe
 
       - name: Build with PyInstaller (macOS)
         if: matrix.os == 'macos-latest'
         run: |
           pyinstaller --onefile --windowed --name AttendanceReportTool gui_app.py
+          cd dist && zip -r ../AttendanceReportTool-macOS.zip AttendanceReportTool.app
 
       - name: Build with PyInstaller (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
           pyinstaller --onefile --name AttendanceReportTool gui_app.py
+          cd dist && tar -czvf ../AttendanceReportTool-Linux.tar.gz AttendanceReportTool
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
-          path: dist/
+          path: |
+            AttendanceReportTool-*.zip
+            AttendanceReportTool-*.tar.gz
 
   release:
     needs: build
